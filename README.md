@@ -1,5 +1,6 @@
 # Java
 A number of samples of Java programs
+## Sample1 ##
 ```java
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class CalculatePi {
     }
 }
 ```
-
+## Sample2 ##
 ```java
 import java.util.Scanner;
 
@@ -53,6 +54,7 @@ public class PrimeNumberChecker {
     }
 }
 ```
+## Sample3 ##
 ```java
 import java.util.Scanner;
 
