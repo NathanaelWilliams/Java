@@ -53,3 +53,63 @@ public class PrimeNumberChecker {
     }
 }
 ```
+```java
+import java.util.Scanner;
+
+public class CircleCalculator {
+
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the radius of the circle
+        System.out.print("Enter the radius of the circle: ");
+        double radius = scanner.nextDouble();
+
+        // Calculate the circumference and area of the circle
+        double circumference = calculateCircumference(radius);
+        double circleArea = calculateArea(radius);
+
+        // Calculate the area of the inscribed equilateral triangle
+        double triangleArea = calculateInscribedTriangleArea(radius);
+
+        // Display the results
+        System.out.println("The circumference of the circle is: " + circumference);
+        System.out.println("The area of the circle is: " + circleArea);
+        System.out.println("The area of the inscribed equilateral triangle is: " + triangleArea);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    /**
+     * Calculates the circumference of a circle.
+     *
+     * @param radius The radius of the circle.
+     * @return The circumference of the circle.
+     */
+    public static double calculateCircumference(double radius) {
+        return 2 * Math.PI * radius;
+    }
+
+    /**
+     * Calculates the area of a circle.
+     *
+     * @param radius The radius of the circle.
+     * @return The area of the circle.
+     */
+    public static double calculateArea(double radius) {
+        return Math.PI * radius * radius;
+    }
+
+    /**
+     * Calculates the area of an inscribed equilateral triangle in a circle.
+     *
+     * @param radius The radius of the circle.
+     * @return The area of the inscribed equilateral triangle.
+     */
+    public static double calculateInscribedTriangleArea(double radius) {
+        return (Math.sqrt(3) / 4) * radius * radius;
+    }
+}
+```
