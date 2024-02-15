@@ -230,3 +230,4 @@ public class TwentyFourGame {
     }
 }
 ```
+**Attention**.This program uses a recursive function, `Solve24Helper`, to try all possible combinations. It uses a `HashSet` to store all found solutions to avoid duplication. The program first checks to see if the input is a valid four-digit number, and then breaks the number down into individual digits. It then calls the `solve24` function to try to find a solution.
