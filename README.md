@@ -164,3 +164,69 @@ public class NumberCalculations {
 }
 ```
 **Attention**.Note: Since the tangent function is not defined at integer multiples of π/2 and - π/2, the calculation of tangent and cotangent will be problematic if the input values are these points. In addition, for input values that are very close to these points, the calculation results may also be inaccurate due to the precision limitations of floating point numbers.
+## Sample5 ##
+```java
+import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
+
+public class TwentyFourGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a four-digit number: ");
+        int number = scanner.nextInt();
+        scanner.close();
+
+        if (number < 1000 || number > 9999) {
+            System.out.println("Please enter a valid four-digit number.");
+            return;
+        }
+
+        int[] digits = new int[4];
+        for (int i = 3; i >= 0; i--) {
+            digits[3 - i] = number % 10;
+            number /= 10;
+        }
+
+        if (solve24(digits)) {
+            System.out.println("Solution found:");
+            for (String solution : solutions) {
+                System.out.println(solution);
+            }
+        } else {
+            System.out.println("No Solution");
+        }
+    }
+
+    private static Set<String> solutions = new HashSet<>();
+    private static boolean solve24(int[] digits) {
+        solutions.clear();
+        return solve24Helper(digits, 0, 0, "");
+    }
+
+    private static boolean solve24Helper(int[] digits, double current, double last, String expression) {
+        if (digits.length == 0) {
+            if (current == 24) {
+                solutions.add(expression);
+                return true;
+            }
+            return false;
+        }
+
+        for (int i = 0; i < digits.length; i++) {
+            int[] remaining = new int[digits.length - 1];
+            System.arraycopy(digits, 0, remaining, 0, i);
+            System.arraycopy(digits, i + 1, remaining, i, digits.length - i - 1);
+
+            if (i == 0 || last != digits[i]) {
+                if (solve24Helper(remaining, current + digits[i], digits[i], expression + "+" + digits[i])) return true;
+                if (solve24Helper(remaining, current - digits[i], digits[i], expression + "-" + digits[i])) return true;
+                if (solve24Helper(remaining, current * digits[i], digits[i], expression + "*" + digits[i])) return true;
+                if (digits[i] != 0 && solve24Helper(remaining, current / digits[i], digits[i], expression + "/" + digits[i])) return true;
+            }
+        }
+
+        return false;
+    }
+}
+```
