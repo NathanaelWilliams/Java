@@ -16,6 +16,7 @@ public class CalculatePi {
     }
 }
 ```
+**Attention**.1000000000 is `MAX`
 ## Sample2 ##
 ```java
 import java.util.Scanner;
