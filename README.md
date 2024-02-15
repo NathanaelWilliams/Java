@@ -115,3 +115,51 @@ public class CircleCalculator {
     }
 }
 ```
+## Sample4 ##
+```java
+import java.math.BigDecimal;
+import java.util.Scanner;
+import java.math.MathContext;
+
+public class NumberCalculations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number: ");
+        double number = scanner.nextDouble();
+
+        // Calculate the square root
+        double squareRoot = Math.sqrt(number);
+        System.out.println("Square root: " + squareRoot);
+
+        // Calculate the square
+        double square = number * number;
+        System.out.println("Square: " + square);
+
+        // Calculate the opposite number
+        double oppositeNumber = -number;
+        System.out.println("Opposite number: " + oppositeNumber);
+
+        // Calculate the reciprocal (BigDecimal is used for precision)
+        BigDecimal bdNumber = new BigDecimal(number);
+        BigDecimal reciprocal = BigDecimal.ONE.divide(bdNumber, MathContext.DECIMAL64);
+        System.out.println("Reciprocal: " + reciprocal);
+
+        // Calculate the sine, cosine, tangent, and cotangent
+        double sine = Math.sin(number);
+        System.out.println("Sine: " + sine);
+
+        double cosine = Math.cos(number);
+        System.out.println("Cosine: " + cosine);
+
+        double tangent = Math.tan(number);
+        System.out.println("Tangent: " + tangent);
+
+        // Cotangent is the reciprocal of the tangent
+        double cotangent = 1 / Math.tan(number);
+        System.out.println("Cotangent: " + cotangent);
+
+        scanner.close();
+    }
+}
+```
+**Attention**.Note: Since the tangent function is not defined at integer multiples of π/2 and - π/2, the calculation of tangent and cotangent will be problematic if the input values are these points. In addition, for input values that are very close to these points, the calculation results may also be inaccurate due to the precision limitations of floating point numbers.
