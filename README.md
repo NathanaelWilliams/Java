@@ -353,6 +353,10 @@ public class SnakeGame {
 
 **Attention**. In this program, we created a `SnakeGame` class that handles the game logic. The game is represented in a two-dimensional array `board`, where `-1` represents the snake's head, `0` represents a space, and a positive integer represents the snake's body part. We use the snake array to track the position of the `snake`, and the `food`array to track the position of the food.
 <br>
+<br>
+
 The user controls the movement of the snake via console input (on W, a left, S down, D Right). After each move, the program checks to see if the game is over (for example, if the snake hit a wall or ate itself). If the game is not finished, the program updates the location of the snake and food, and rerenders the game board.
 <br>
+<br>
+
 To run this program, copy it into the Java development environment and run the `main` method. The game will start on the console and you can control the snake's movement by entering the `WASD`(cant be wasd) key.
