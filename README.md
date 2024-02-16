@@ -462,7 +462,7 @@ public class SimpleWebCrawler {
     }
 }
 ```
-** Attention **.Please note that web crawling should be done responsibly. Always check the `robots.txt` file of a website and respect its policies. Additionally, make sure not to overload the website’s server by making too many requests in a short period of time.
+**Attention**.Please note that web crawling should be done responsibly. Always check the `robots.txt` file of a website and respect its policies. Additionally, make sure not to overload the website’s server by making too many requests in a short period of time.
 <br><br>
 In this example, we use Java’s `HttpURLConnection` class to connect to a webpage and read its contents. We then search for lines that contain the “href="” string, which indicates the start of a link. We extract the link and print it.
 <br><br>
