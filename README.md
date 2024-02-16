@@ -234,6 +234,7 @@ public class TwentyFourGame {
 
 ## Sample6 ##
 ```java
+import java.util.*;
 public class SnakeGame {
     private int width;
     private int height;
