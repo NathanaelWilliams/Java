@@ -408,7 +408,7 @@ public class WritePiToFile {
 <br>
 <br>
 To run this program, copy it into the Java development environment and run the `main` method. The program prompts you for a file directory and file name, then creates a new file under that directory and writes the first 100 digits of pi to the file.
-## Sample7 ##
+## Sample8 ##
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -468,3 +468,58 @@ In this example, we use Java’s `HttpURLConnection` class to connect to a webpa
 <br><br>
 
 This is a very basic example and does not handle various complexities such as relative URLs, redirections, or different types of links (like `javascript`: links). It also does not crawl recursively to follow the extracted links.
+## Sample9 ##
+```java
+public class HeartPattern {
+    public static void main(String[] args) {
+        int i, j;
+        int n = 10; // You can change the size of the heart
+
+        // Upper part of the heart
+        for (i = n / 2; i <= n; i += 2) {
+            // Print spaces
+            for (j = 1; j < n - i; j += 2) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+
+            // Print spaces between the two upper lobes of the heart
+            for (j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+
+        // Lower part of the heart
+        for (i = n; i >= 1; i--) {
+            // Print stars
+            for (j = i; j < n; j++) {
+                System.out.print("*");
+            }
+
+            // Print space in the middle of the heart
+            for (j = 1; j <= 2 * i - 1; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (j = i; j < n; j++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+**Attention**.The program uses two nested for loops to print the heart. The outer loop controls the number of rows, and the inner loop controls the spaces and asterisks in each row. The program prints first the top half of the heart, then the bottom half.
