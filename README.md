@@ -408,3 +408,63 @@ public class WritePiToFile {
 <br>
 <br>
 To run this program, copy it into the Java development environment and run the `main` method. The program prompts you for a file directory and file name, then creates a new file under that directory and writes the first 100 digits of pi to the file.
+## Sample7 ##
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class SimpleWebCrawler {
+
+    public static void main(String[] args) {
+        String startingUrl = "http://example.com"; // Replace with the URL you want to start crawling
+        crawl(startingUrl);
+    }
+
+    private static void crawl(String url) {
+        try {
+            // Create a URL object
+            URL siteURL = new URL(url);
+
+            // Open the connection
+            HttpURLConnection connection = (HttpURLConnection) siteURL.openConnection();
+
+            // Connect to the site
+            connection.connect();
+
+            // Check if the response code is OK
+            if (connection.getResponseCode() == 200) {
+                // Read the input stream
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.contains("href=\"")) {
+                        // Extract the link
+                        int start = line.indexOf("href=\"") + 6;
+                        int end = line.indexOf("\"", start);
+                        String link = line.substring(start, end);
+
+                        // Print the link
+                        System.out.println(link);
+                    }
+                }
+                reader.close();
+            }
+
+            // Disconnect
+            connection.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+** Attention **.Please note that web crawling should be done responsibly. Always check the `robots.txt` file of a website and respect its policies. Additionally, make sure not to overload the website’s server by making too many requests in a short period of time.
+<br><br>
+In this example, we use Java’s `HttpURLConnection` class to connect to a webpage and read its contents. We then search for lines that contain the “href="” string, which indicates the start of a link. We extract the link and print it.
+<br><br>
+
+This is a very basic example and does not handle various complexities such as relative URLs, redirections, or different types of links (like `javascript`: links). It also does not crawl recursively to follow the extracted links.
