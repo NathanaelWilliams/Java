@@ -231,3 +231,121 @@ public class TwentyFourGame {
 }
 ```
 **Attention**.This program uses a recursive function, `Solve24Helper`, to try all possible combinations. It uses a `HashSet` to store all found solutions to avoid duplication. The program first checks to see if the input is a valid four-digit number, and then breaks the number down into individual digits. It then calls the `solve24` function to try to find a solution.
+
+## Sample6 ##
+```java
+public class SnakeGame {
+    private int width;
+    private int height;
+    private int[][] board;
+    private int[] snake;
+    private int[] food;
+    private int score;
+    private boolean gameOver;
+
+    // Initialize the game
+    public SnakeGame(int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.board = new int[width][height];
+        this.snake = new int[]{width / 2, height / 2}; // Start at the center
+        this.food = generateFood();
+        this.score = 0;
+        this.gameOver = false;
+    }
+
+    // Generate a new food position
+    private int[] generateFood() {
+        int x, y;
+        do {
+            x = (int) (Math.random() * width);
+            y = (int) (Math.random() * height);
+        } while (board[x][y] != 0);
+        return new int[]{x, y};
+    }
+
+    // Move the snake
+    private void move(int dx, int dy) {
+        int newX = snake[0] + dx;
+        int newY = snake[1] + dy;
+
+        // Check for game over conditions
+        if (newX < 0 || newX >= width || newY < 0 || newY >= height || board[newX][newY] < 0) {
+            gameOver = true;
+            return;
+        }
+
+        // Update the snake's position
+        snake[0] = newX;
+        snake[1] = newY;
+
+        // Check if the snake has eaten the food
+        if (newX == food[0] && newY == food[1]) {
+            score++;
+            food = generateFood();
+        } else {
+            // Move the rest of the snake body
+            for (int i = score; i > 0; i--) {
+                board[snake[i * 2]][snake[i * 2 + 1]] = i;
+            }
+        }
+
+        board[newX][newY] = -1; // Snake head
+    }
+
+    // Render the game board
+    private void render() {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (x == snake[0] && y == snake[1]) {
+                    System.out.print("O "); // Snake head
+                } else if (x == food[0] && y == food[1]) {
+                    System.out.print("X "); // Food
+                } else if (board[x][y] > 0) {
+                    System.out.print("o "); // Snake body
+                } else {
+                    System.out.print(". ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("Score: " + score);
+    }
+
+    // Main game loop
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        while (!gameOver) {
+            render();
+            System.out.print("Enter direction (WASD): ");
+            String input = scanner.nextLine().toUpperCase();
+            switch (input) {
+                case "W":
+                    move(0, -1);
+                    break;
+                case "A":
+                    move(-1, 0);
+                    break;
+                case "S":
+                    move(0, 1);
+                    break;
+                case "D":
+                    move(1, 0);
+                    break;
+                default:
+                    System.out.println("Invalid direction.");
+                    continue;
+            }
+            if (gameOver) {
+                System.out.println("Game Over! Final score: " + score);
+            }
+        }
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        SnakeGame game = new SnakeGame(20, 20);
+        game.run();
+    }
+}
+```
