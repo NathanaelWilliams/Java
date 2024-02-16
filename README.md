@@ -360,3 +360,51 @@ The user controls the movement of the snake via console input (on W, a left, S d
 <br>
 
 To run this program, copy it into the Java development environment and run the `main` method. The game will start on the console and you can control the snake's movement by entering the `WASD`(cant be wasd) key.
+
+## Sample7 ##
+```java
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.util.Scanner;
+
+public class WritePiToFile {
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the directory to write the file
+        System.out.print("Enter the directory to write the file: ");
+        String directory = scanner.nextLine();
+
+        // Prompt the user to enter the file name
+        System.out.print("Enter the file name: ");
+        String fileName = scanner.nextLine();
+
+        // Close the scanner as we no longer need to read input
+        scanner.close();
+
+        // Create the full file path
+        String filePath = directory + "/" + fileName;
+
+        // Calculate Pi with a precision of 100 digits after the decimal point
+        BigDecimal pi = new BigDecimal(Math.PI);
+        MathContext mc = new MathContext(102); // 100 digits precision plus 2 for "3."
+        pi = pi.round(mc);
+
+        // Write Pi to the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(pi.toString().substring(0, 102)); // Write the first 102 characters (100 digits + "3.")
+            System.out.println("Pi has been written to " + filePath);
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
+}
+```
+**Attention**.In this program, we first create a `Scanner` object to read the file directory and file name entered by the user. Then, we closed the `Scanner` object because we no longer needed to read the input. Next, we used the `BigDecimal` class and the `MathContext` object to calculate the pi and set the required precision. Finally, we use the `BufferedWriter` and `FileWriter` to write the first `100 bits` of pi to a file.
+<br>
+<br>
+To run this program, copy it into the Java development environment and run the `main` method. The program prompts you for a file directory and file name, then creates a new file under that directory and writes the first 100 digits of pi to the file.
